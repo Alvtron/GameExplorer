@@ -1,0 +1,1 @@
+C:\Users\thoma\source\repos\Game Explorer\Game Explorer\GameExplorer.Uwp\GameExplorer.Uwp.csproj;x64

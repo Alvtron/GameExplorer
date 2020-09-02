@@ -1,0 +1,180 @@
+﻿<Page
+    x:Class="GameExplorer.Uwp.Views.UserPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:GameExplorer.Uwp"
+    xmlns:Model="using:GameExplorer.Model"
+    xmlns:Converters="using:GameExplorer.Uwp.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    DataContext="{x:Bind _viewModel}"
+    x:Name="ViewModelRoot">
+
+    <Page.Resources>
+        <Converters:DateTimeConverter x:Key="DateTimeConverter" />
+        <Converters:ImageConverter x:Key="ImageConverter" />
+        <Converters:VisibillityConverter x:Key="VisibillityConverter" />
+        <Converters:InvertedVisibillityConverter x:Key="BooleanInverter" />
+        <Converters:ExperienceConverter x:Key="ExperienceConverter" />
+        <Converters:ColorConverter x:Key="ColorConverter" />
+    </Page.Resources>
+
+    <Grid x:Name="DataRoot" DataContext="{x:Bind _viewModel.User}">
+        <ScrollViewer>
+            <RelativePanel HorizontalAlignment="Left" Padding="24">
+                <!-- Badge -->
+                <StackPanel Name="Badge" Margin="24" Spacing="10" MinWidth="200" MaxWidth="400" HorizontalAlignment="Left" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignRightWithPanel="True">
+                    <PersonPicture
+                        MinWidth="200"
+                        MinHeight="200"
+                        MaxWidth="400"
+                        MaxHeight="400"
+                        ProfilePicture="{Binding Photo, Converter={StaticResource ImageConverter}}"
+                        DisplayName="{Binding Username}"
+                        Initials="{Binding Initials}"/>
+                    <!-- Experience bar -->
+                        <Grid>
+                        <ProgressBar Height="20" Value="{Binding Path=Experience, Converter={StaticResource ExperienceConverter}}" Maximum="100" Foreground="{Binding Color, Converter={StaticResource ColorConverter}}"/>
+                            <TextBlock Name="ExperienceBarTextBlock" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,2" FontSize="12" FontWeight="Thin" Foreground="White">
+                                <Run Text="{Binding Path=Experience}" />
+                                <Run Text="/" />
+                                <Run Text="{Binding Path=NextExp}" />
+                            </TextBlock>
+                        </Grid>
+                    <!-- Add friend, report -->
+                    <CommandBar Background="Transparent" HorizontalAlignment="Center" OverflowButtonVisibility="Collapsed">
+                        <AppBarButton Content="Add friend" Icon="AddFriend" Command="{x:Bind _viewModel.BefriendCommand}" />
+                        <AppBarButton Content="Report" Icon="Flag" Command="{x:Bind _viewModel.ReportCommand}" />
+                    </CommandBar>
+                    <!-- Info -->
+                    <TextBlock Text="{Binding Username}" Style="{StaticResource SubtitleTextBlockStyle}" />
+                    <TextBlock Text="{Binding FullName}" Style="{StaticResource BodyTextBlockStyle}" />
+                    <Grid RowSpacing="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="144" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text="Member Since"/>
+                        <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Path=SignedUpString}"/>
+
+                        <TextBlock Grid.Row="1" Grid.Column="0" Text="Last login"/>
+                        <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Path=SignedInString}"/>
+                    </Grid>
+                </StackPanel>
+                <!-- About -->
+                <StackPanel Margin="24" Spacing="20" Name="About" RelativePanel.Below="Badge" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
+                    <TextBlock Text="About" HorizontalAlignment="Left" Style="{StaticResource SubtitleTextBlockStyle}" Foreground="{Binding Color, Converter={StaticResource ColorConverter}}"/>
+                    <Grid RowSpacing="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="144" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <!-- Username -->
+                        <TextBlock Text="CurrentUser Name" Grid.Row="0" Grid.Column="0"/>
+                        <TextBlock Text="{Binding Path=Username}" Grid.Row="0" Grid.Column="1"/>
+                        <!-- First name -->
+                        <TextBlock Text="First Name" Grid.Row="1" Grid.Column="0"/>
+                        <TextBlock Text="{Binding Path=FirstName}" Grid.Row="1" Grid.Column="1"/>
+                        <!-- Last name -->
+                        <TextBlock Text="Last Name" Grid.Row="2" Grid.Column="0"/>
+                        <TextBlock Text="{Binding Path=LastName}" Grid.Row="2" Grid.Column="1"/>
+                        <!-- Country -->
+                        <TextBlock Text="Country" Grid.Row="3" Grid.Column="0"/>
+                        <TextBlock Text="{Binding Path=Country}" Grid.Row="3" Grid.Column="1"/>
+                        <!-- Birtday -->
+                        <TextBlock Text="Birthday" Grid.Row="4" Grid.Column="0"/>
+                        <TextBlock Text="{Binding Path=BirthdayString}" Grid.Row="4" Grid.Column="1"/>
+                        <!-- Website -->
+                        <TextBlock Text="Website" Grid.Row="5" Grid.Column="0"/>
+                        <TextBlock Grid.Row="5" Grid.Column="1">
+                                <Hyperlink xml:space="preserve" NavigateUri="{Binding Path=Website}">
+                                    <Run Text="{Binding Path=Website}" />
+                                </Hyperlink>
+                        </TextBlock>
+                        <!-- Bio -->
+                        <StackPanel Grid.ColumnSpan="2" Grid.Row="6">
+                            <TextBlock Text="Bio"/>
+                            <local:RichEditBoxExtended RtfText="{Binding Bio}" IsReadOnly="True" BorderBrush="Transparent" BorderThickness="0" Padding="0"/>
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+                <!-- Friends -->
+                <StackPanel Margin="24" Spacing="20" Name="Friends" RelativePanel.Below="About" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
+                    <TextBlock Text="Friends" Style="{StaticResource SubtitleTextBlockStyle}" Foreground="{Binding Color, Converter={StaticResource ColorConverter}}" />
+                    <GridView ItemsSource="{Binding Path=Friends}" HorizontalAlignment="Center" MaxHeight="300" IsItemClickEnabled="True" SelectionMode="None">
+                        <GridView.ItemTemplate>
+                            <DataTemplate x:DataType="Model:User">
+                                <Button Command="{Binding DataContext.GoToCommand, ElementName=ViewModelRoot}" CommandParameter="{Binding}" Background="Transparent">
+                                    <Grid>
+                                        <Ellipse Height="85" Width="85" VerticalAlignment="Center" HorizontalAlignment="Center" Fill="LightGray" />
+                                        <Ellipse Height="85" Width="85" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                            <Ellipse.Fill>
+                                                <ImageBrush ImageSource="{Binding Path=Photo, Converter={StaticResource ImageConverter}}" Stretch="UniformToFill" />
+                                            </Ellipse.Fill>
+                                        </Ellipse>
+                                        <Viewbox MaxWidth="75" StretchDirection="DownOnly" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                            <TextBlock Text="{Binding Path=FullName}"/>
+                                        </Viewbox>
+                                    </Grid>
+                                </Button>
+                            </DataTemplate>
+                        </GridView.ItemTemplate>
+                    </GridView>
+                    <HyperlinkButton Content="See all friends" HorizontalAlignment="Right" Command="{x:Bind _viewModel.SeeAllFriendsCommand}"/>
+                </StackPanel>
+                <!-- Games -->
+                <StackPanel Margin="24" Spacing="20" Name="Games" RelativePanel.Below="Friends" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
+                    <TextBlock Text="Games" HorizontalAlignment="Left" Style="{StaticResource SubtitleTextBlockStyle}" Foreground="{Binding Color, Converter={StaticResource ColorConverter}}"/>
+                    <GridView ItemsSource="{Binding Path=Games}" MaxHeight="300" IsItemClickEnabled="True" SelectionMode="None">
+                        <GridView.ItemTemplate>
+                            <DataTemplate x:DataType="Model:Game">
+                                <Button Command="{Binding DataContext.GoToCommand, ElementName=ViewModelRoot}" CommandParameter="{Binding}" Background="Transparent">
+                                    <Image Height="85" Width="85" Stretch="UniformToFill" VerticalAlignment="Center">
+                                        <Image.Source>
+                                            <BitmapImage UriSource="{Binding CoverUri}" />
+                                        </Image.Source>
+                                    </Image>
+                                </Button>
+                            </DataTemplate>
+                        </GridView.ItemTemplate>
+                    </GridView>
+                    <HyperlinkButton Content="See all games" HorizontalAlignment="Right" Command="{x:Bind _viewModel.SeeAllGamesCommand}"/>
+                </StackPanel>
+                <!-- Activity -->
+                <StackPanel Margin="24" Spacing="20" Name="Activity" Padding="20" RelativePanel.Below="Games" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
+                    <TextBlock Text="Activity" HorizontalAlignment="Left" Style="{StaticResource SubtitleTextBlockStyle}" Foreground="{Binding Color, Converter={StaticResource ColorConverter}}"/>
+                    <ListView ItemsSource="{Binding Path=Logs}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate x:DataType="Model:Log">
+                                <ListViewItem>
+                                    <TextBlock>
+                                        <Run Text="{Binding Path=Date}" />
+                                        <Run Text="-" />
+                                        <Run Text="{Binding Path=Information}" />
+                                    </TextBlock>
+                                </ListViewItem>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <HyperlinkButton Content="See all activity" HorizontalAlignment="Right" Command="{x:Bind _viewModel.SeeAllActivityCommand}"/>
+                </StackPanel>
+            </RelativePanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

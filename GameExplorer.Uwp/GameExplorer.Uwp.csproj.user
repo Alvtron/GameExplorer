@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Source>C:\Users\thoma\Downloads\console.png</Source>
+    <SmallTileSource>C:\Users\thoma\Downloads\console.png</SmallTileSource>
+    <MediumTileSource>C:\Users\thoma\Downloads\console.png</MediumTileSource>
+    <WideTileSource>C:\Users\thoma\Downloads\console.png</WideTileSource>
+    <LargeTileSource>C:\Users\thoma\Downloads\console.png</LargeTileSource>
+    <AppIconSource>C:\Users\thoma\Downloads\console.png</AppIconSource>
+    <SplashScreenSource>C:\Users\thoma\Downloads\console.png</SplashScreenSource>
+    <PackageLogoSource>C:\Users\thoma\Downloads\console.png</PackageLogoSource>
+    <ProjectView>ProjectFiles</ProjectView>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
+    <DeviceId>30F105C9-681E-420b-A277-7C086EAD8A4E</DeviceId>
+    <UseEmulator>true</UseEmulator>
+  </PropertyGroup>
+</Project>

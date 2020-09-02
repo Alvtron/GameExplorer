@@ -1,0 +1,17 @@
+C:\Users\thoma\source\repos\QC\QuestCompanion\QC.Model\bin\Debug\netstandard2.0\GameExplorer.Model.deps.json
+C:\Users\thoma\source\repos\QC\QuestCompanion\QC.Model\bin\Debug\netstandard2.0\GameExplorer.Model.dll
+C:\Users\thoma\source\repos\QC\QuestCompanion\QC.Model\bin\Debug\netstandard2.0\GameExplorer.Model.pdb
+C:\Users\thoma\source\repos\QC\QuestCompanion\QC.Model\obj\Debug\netstandard2.0\GameExplorer.Model.csproj.CoreCompileInputs.cache
+C:\Users\thoma\source\repos\QC\QuestCompanion\QC.Model\obj\Debug\netstandard2.0\GameExplorer.Model.AssemblyInfoInputs.cache
+C:\Users\thoma\source\repos\QC\QuestCompanion\QC.Model\obj\Debug\netstandard2.0\GameExplorer.Model.AssemblyInfo.cs
+C:\Users\thoma\source\repos\QC\QuestCompanion\QC.Model\obj\Debug\netstandard2.0\GameExplorer.Model.dll
+C:\Users\thoma\source\repos\QC\QuestCompanion\QC.Model\obj\Debug\netstandard2.0\GameExplorer.Model.pdb
+C:\Users\thoma\source\repos\Game Explorer\Game Explorer\GameExplorer.Model\bin\Debug\netstandard2.0\GameExplorer.Model.deps.json
+C:\Users\thoma\source\repos\Game Explorer\Game Explorer\GameExplorer.Model\bin\Debug\netstandard2.0\GameExplorer.Model.dll
+C:\Users\thoma\source\repos\Game Explorer\Game Explorer\GameExplorer.Model\bin\Debug\netstandard2.0\GameExplorer.Model.pdb
+C:\Users\thoma\source\repos\Game Explorer\Game Explorer\GameExplorer.Model\obj\Debug\netstandard2.0\GameExplorer.Model.csprojAssemblyReference.cache
+C:\Users\thoma\source\repos\Game Explorer\Game Explorer\GameExplorer.Model\obj\Debug\netstandard2.0\GameExplorer.Model.csproj.CoreCompileInputs.cache
+C:\Users\thoma\source\repos\Game Explorer\Game Explorer\GameExplorer.Model\obj\Debug\netstandard2.0\GameExplorer.Model.AssemblyInfoInputs.cache
+C:\Users\thoma\source\repos\Game Explorer\Game Explorer\GameExplorer.Model\obj\Debug\netstandard2.0\GameExplorer.Model.AssemblyInfo.cs
+C:\Users\thoma\source\repos\Game Explorer\Game Explorer\GameExplorer.Model\obj\Debug\netstandard2.0\GameExplorer.Model.dll
+C:\Users\thoma\source\repos\Game Explorer\Game Explorer\GameExplorer.Model\obj\Debug\netstandard2.0\GameExplorer.Model.pdb

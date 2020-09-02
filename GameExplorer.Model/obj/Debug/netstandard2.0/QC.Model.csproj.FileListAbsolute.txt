@@ -1,0 +1,9 @@
+C:\Users\thoma\Source\Repos\QC\QuestCompanion\QC.Model\bin\Debug\netstandard2.0\QC.Model.deps.json
+C:\Users\thoma\Source\Repos\QC\QuestCompanion\QC.Model\bin\Debug\netstandard2.0\QC.Model.dll
+C:\Users\thoma\Source\Repos\QC\QuestCompanion\QC.Model\bin\Debug\netstandard2.0\QC.Model.pdb
+C:\Users\thoma\Source\Repos\QC\QuestCompanion\QC.Model\obj\Debug\netstandard2.0\QC.Model.csproj.CoreCompileInputs.cache
+C:\Users\thoma\Source\Repos\QC\QuestCompanion\QC.Model\obj\Debug\netstandard2.0\QC.Model.AssemblyInfoInputs.cache
+C:\Users\thoma\Source\Repos\QC\QuestCompanion\QC.Model\obj\Debug\netstandard2.0\QC.Model.AssemblyInfo.cs
+C:\Users\thoma\Source\Repos\QC\QuestCompanion\QC.Model\obj\Debug\netstandard2.0\QC.Model.dll
+C:\Users\thoma\Source\Repos\QC\QuestCompanion\QC.Model\obj\Debug\netstandard2.0\QC.Model.pdb
+C:\Users\thoma\source\repos\QC\QuestCompanion\QC.Model\obj\Debug\netstandard2.0\QC.Model.csprojResolveAssemblyReference.cache

@@ -1,0 +1,6 @@
+C:\Users\thoma\source\repos\QC\QuestCompanion\QC.Model\obj\Debug\QC.Model.csproj.CoreCompileInputs.cache
+C:\Users\thoma\source\repos\QC\QuestCompanion\QC.Model\bin\Debug\QC.Model2.dll
+C:\Users\thoma\source\repos\QC\QuestCompanion\QC.Model\bin\Debug\QC.Model2.pdb
+C:\Users\thoma\source\repos\QC\QuestCompanion\QC.Model\obj\Debug\QC.Model2.dll
+C:\Users\thoma\source\repos\QC\QuestCompanion\QC.Model\obj\Debug\QC.Model2.pdb
+C:\Users\thoma\source\repos\QC\QuestCompanion\QC.Model\obj\Debug\QC.Model.csprojResolveAssemblyReference.cache

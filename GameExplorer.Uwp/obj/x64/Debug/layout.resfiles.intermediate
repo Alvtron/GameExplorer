@@ -1,0 +1,84 @@
+WinMetadata\Windows.winmd
+Assets\LargeTile.scale-100.png
+Assets\LargeTile.scale-125.png
+Assets\LargeTile.scale-150.png
+Assets\LargeTile.scale-200.png
+Assets\LargeTile.scale-400.png
+Assets\LockScreenLogo.scale-200.png
+Assets\SmallTile.scale-100.png
+Assets\SmallTile.scale-125.png
+Assets\SmallTile.scale-150.png
+Assets\SmallTile.scale-200.png
+Assets\SmallTile.scale-400.png
+Assets\SplashScreen.scale-100.png
+Assets\SplashScreen.scale-125.png
+Assets\SplashScreen.scale-150.png
+Assets\SplashScreen.scale-200.png
+Assets\SplashScreen.scale-400.png
+Assets\Square150x150Logo.scale-100.png
+Assets\Square150x150Logo.scale-125.png
+Assets\Square150x150Logo.scale-150.png
+Assets\Square150x150Logo.scale-200.png
+Assets\Square150x150Logo.scale-400.png
+Assets\Square44x44Logo.altform-unplated_targetsize-16.png
+Assets\Square44x44Logo.altform-unplated_targetsize-256.png
+Assets\Square44x44Logo.altform-unplated_targetsize-32.png
+Assets\Square44x44Logo.altform-unplated_targetsize-48.png
+Assets\Square44x44Logo.scale-100.png
+Assets\Square44x44Logo.scale-125.png
+Assets\Square44x44Logo.scale-150.png
+Assets\Square44x44Logo.scale-200.png
+Assets\Square44x44Logo.scale-400.png
+Assets\Square44x44Logo.targetsize-16.png
+Assets\Square44x44Logo.targetsize-24.png
+Assets\Square44x44Logo.targetsize-24_altform-unplated.png
+Assets\Square44x44Logo.targetsize-256.png
+Assets\Square44x44Logo.targetsize-32.png
+Assets\Square44x44Logo.targetsize-48.png
+Assets\StoreLogo.scale-100.png
+Assets\StoreLogo.scale-125.png
+Assets\StoreLogo.scale-150.png
+Assets\StoreLogo.scale-200.png
+Assets\StoreLogo.scale-400.png
+Assets\Wide310x150Logo.scale-100.png
+Assets\Wide310x150Logo.scale-125.png
+Assets\Wide310x150Logo.scale-150.png
+Assets\Wide310x150Logo.scale-200.png
+Assets\Wide310x150Logo.scale-400.png
+App.xbf
+Dialogs\AddStepDialog.xbf
+Dialogs\AddVideoDialog.xbf
+Dialogs\ColorPickerDialog.xbf
+Dialogs\CreateQuestlineDialog.xbf
+Dialogs\CreateRewardDialog.xbf
+Dialogs\ReportDialog.xbf
+Dialogs\SignInDialog.xbf
+GameExplorer.Uwp.xr.xml
+Themes\Generic.xbf
+Views\AccountSettingsPage.xbf
+Views\AddGamePage.xbf
+Views\AddQuestPage.xbf
+Views\AddWikiPage.xbf
+Views\GamePage.xbf
+Views\HomePage.xbf
+Views\MainPage.xbf
+Views\MediaPage.xbf
+Views\QuestPage.xbf
+Views\SearchPage.xbf
+Views\SettingsPage.xbf
+Views\UserActivityPage.xbf
+Views\UserFriendsPage.xbf
+Views\UserGamesPage.xbf
+Views\UserPage.xbf
+Views\WikiPage.xbf
+DataSource\gamesdata.json
+Images\AdminPhoto.jpg
+Images\image (1).jpg
+Images\image (2).jpg
+Images\image (3).jpg
+Images\image (4).jpg
+Images\image (5).jpg
+Images\image (6).jpg
+Images\image (7).jpg
+Images\no_image_available.jpeg
+Properties\Default.rd.xml

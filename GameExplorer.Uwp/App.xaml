@@ -1,0 +1,42 @@
+﻿<Application
+    x:Class="GameExplorer.Uwp.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:GameExplorer.Uwp">
+
+    <Application.Resources>
+        <ResourceDictionary>
+            <SolidColorBrush x:Key="GameExplorerColor" Color="DarkCyan" />
+            <SolidColorBrush x:Key="SaveButtonColor" Color="#3CB981" />
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary x:Key="Light">
+                    <SolidColorBrush x:Key="GameExplorerTopNavigationBar" Color="DarkCyan" />
+                    <AcrylicBrush x:Key="NavigationViewDefaultPaneBackground" BackgroundSource="HostBackdrop" TintColor="White" TintOpacity=".8"/>
+                    <AcrylicBrush x:Key="NavigationViewExpandedPaneBackground" BackgroundSource="HostBackdrop" TintColor="White" TintOpacity=".8"/>
+                    <AcrylicBrush x:Key="Acryllic80" BackgroundSource="HostBackdrop" TintColor="White" TintOpacity=".8"/>
+                    <AcrylicBrush x:Key="Acryllic60" BackgroundSource="HostBackdrop" TintColor="White" TintOpacity=".6"/>
+                    <AcrylicBrush x:Key="Acryllic40" BackgroundSource="HostBackdrop" TintColor="White" TintOpacity=".4"/>
+                    <AcrylicBrush x:Key="Acryllic20" BackgroundSource="HostBackdrop" TintColor="White" TintOpacity=".2"/>
+                </ResourceDictionary>
+                <ResourceDictionary x:Key="Dark">
+                    <SolidColorBrush x:Key="GameExplorerTopNavigationBar" Color="Black" />
+                    <AcrylicBrush x:Key="NavigationViewDefaultPaneBackground" BackgroundSource="HostBackdrop" TintColor="Black" TintOpacity=".8"/>
+                    <AcrylicBrush x:Key="NavigationViewExpandedPaneBackground" BackgroundSource="HostBackdrop" TintColor="Black" TintOpacity=".8"/>
+                    <AcrylicBrush x:Key="Acryllic80" BackgroundSource="HostBackdrop" TintColor="Black" TintOpacity=".8"/>
+                    <AcrylicBrush x:Key="Acryllic60" BackgroundSource="HostBackdrop" TintColor="Black" TintOpacity=".6"/>
+                    <AcrylicBrush x:Key="Acryllic40" BackgroundSource="HostBackdrop" TintColor="Black" TintOpacity=".4"/>
+                    <AcrylicBrush x:Key="Acryllic20" BackgroundSource="HostBackdrop" TintColor="Black" TintOpacity=".2"/>
+                </ResourceDictionary>
+                <ResourceDictionary x:Key="HighContrast">
+                    <SolidColorBrush x:Key="GameExplorerTopNavigationBar" Color="Black" />
+                    <SolidColorBrush x:Key="NavigationViewDefaultPaneBackground" Color="Black" />
+                    <SolidColorBrush x:Key="NavigationViewExpandedPaneBackground" Color="Black" />
+                    <SolidColorBrush x:Key="Acryllic80" Color="Black"/>
+                    <SolidColorBrush x:Key="Acryllic60" Color="Black"/>
+                    <SolidColorBrush x:Key="Acryllic40" Color="Gray"/>
+                    <SolidColorBrush x:Key="Acryllic20" Color="Gray"/>
+                </ResourceDictionary>
+            </ResourceDictionary.ThemeDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

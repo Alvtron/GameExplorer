@@ -1,0 +1,93 @@
+﻿<Page
+    x:Class="QC.UI.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:QC.UI"
+    xmlns:model="using:QC.Model"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <NavigationView x:ConnectionId='1' x:Name="NavView"                                   Header="Welcome" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+        <NavigationView.MenuItems>
+            <NavigationViewItem Icon="Home" Content="Home" Tag="home"/>
+            <NavigationViewItemHeader Content="Content"/>
+            <NavigationViewItem Icon="List" Content="Games" Tag="games"/>
+            <NavigationViewItem Icon="List" Content="Wikis" Tag="wikis"/>
+            <NavigationViewItem Icon="List" Content="Quests" Tag="quests"/>
+
+        </NavigationView.MenuItems>
+
+        <NavigationView.HeaderTemplate>
+            <DataTemplate>
+                <Grid Padding="20 0 0 0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Header titles -->
+                    <StackPanel Grid.Column="0" VerticalAlignment="Center" Orientation="Horizontal">
+                        <Button Name="BackButton" Visibility="Collapsed" Style="{StaticResource NavigationBackButtonNormalStyle}" Margin="0,0,10,0"/>
+                        <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="{Binding}" Margin="0,1,0,0"/>
+                    </StackPanel>
+
+                    <!-- Qucik search autosuggestbox -->
+                    <AutoSuggestBox x:ConnectionId='2'
+                        Name="ASB"
+                        Grid.Column="1"
+                        Margin="20 0 20 0"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Right"
+                        QueryIcon="Find"
+                        Width="200"
+                        PlaceholderText="Quick search"
+                                           
+                                                     
+                                                           />
+
+                    <!-- Header bar commands -->
+                    <CommandBar Grid.Column="2" HorizontalAlignment="Right" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+                        <AppBarButton Width="150">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock x:ConnectionId='6' Name="CurrentGame" Text="Select game"  VerticalAlignment="Center"                             />
+                                <FontIcon Margin="10 0 0 0" FontSize="16" Glyph="&#xE70D;" />
+                            </StackPanel>
+                            <AppBarButton.Flyout>
+                                <MenuFlyout>
+                                    <MenuFlyoutItem Text="Find game"/>
+                                    <MenuFlyoutItem Text="My Games"/>
+                                </MenuFlyout>
+                            </AppBarButton.Flyout>
+                        </AppBarButton>
+                        <AppBarButton Width="50">
+                            <PersonPicture x:ConnectionId='3' Name="CurrentUser" Width="30"                             Margin="0,-15,0,-15"/>
+                            <AppBarButton.Flyout>
+                                <MenuFlyout>
+                                    <MenuFlyoutItem x:ConnectionId='4' Name="MyProfile" Text="My profile"                       />
+                                    <MenuFlyoutItem x:ConnectionId='5' Name="SignUser" Text="Sign in"                                              />
+                                </MenuFlyout>
+                            </AppBarButton.Flyout>
+                        </AppBarButton>
+                        <CommandBar.SecondaryCommands>
+                            <AppBarButton Label="Option 1"/>
+                            <AppBarButton Label="Option 2"/>
+                        </CommandBar.SecondaryCommands>
+                    </CommandBar>
+                </Grid>
+            </DataTemplate>
+        </NavigationView.HeaderTemplate>
+
+        <Frame x:ConnectionId='7' x:Name="ContentFrame">
+            <Frame.ContentTransitions>
+                <TransitionCollection>
+                    <NavigationThemeTransition />
+                </TransitionCollection>
+            </Frame.ContentTransitions>
+        </Frame>
+
+    </NavigationView>
+</Page>
+

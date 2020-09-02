@@ -1,0 +1,90 @@
+﻿<Page
+    x:Class="GameExplorer.Uwp.Views.SearchPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:GameExplorer.Uwp"
+    xmlns:model="using:GameExplorer.Model"
+    xmlns:converters="using:GameExplorer.Uwp.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <converters:ImageConverter x:Key="ImageConverter" />
+    </Page.Resources>
+
+    <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Padding="48">
+        <RelativePanel Name="SearchPanel" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
+            <TextBox Name="SearchBox" PlaceholderText="Search" KeyDown="SearchBox_KeyDown" RelativePanel.AlignLeftWithPanel="True" RelativePanel.LeftOf="SearchButton" />
+            <Button Name="SearchButton" Content="Search" RelativePanel.AlignRightWithPanel="True"/>
+        </RelativePanel>
+        <Grid Margin="0,20,0,0" RelativePanel.Below="SearchPanel" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!-- Games -->
+            <ListView Name="GameList" Header="Games" Grid.Column="0" Margin="0,0,20,0" HorizontalAlignment="Left" IsItemClickEnabled="True" ItemClick="GameList_ItemClick">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="model:Game">
+                        <StackPanel Orientation="Horizontal" Margin="0 3 0 3">
+                            <Image Height="48" Width="48" Stretch="UniformToFill">
+                                <Image.Source>
+                                    <BitmapImage UriSource="{Binding CoverUri}" />
+                                </Image.Source>
+                            </Image>
+                            <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="12 0 0 0">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{x:Bind Title}" Margin="0 0 4 0" Style="{ThemeResource BaseTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseHighBrush}"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{x:Bind Uid}" Style="{ThemeResource BodyTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <!-- Quests -->
+            <ListView Name="QuestList" Header="Quests" Grid.Column="1" Margin="0,0,20,0" HorizontalAlignment="Left" IsItemClickEnabled="True" ItemClick="QuestList_ItemClick">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="model:Quest">
+                        <StackPanel Orientation="Horizontal" Margin="0 3 0 3">
+                            <Image Height="48" Width="48" Stretch="UniformToFill" Source="{Binding Path=Photo, Converter={StaticResource ImageConverter}}" />
+                            <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="12 0 0 0">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{x:Bind Title}" Margin="0 0 4 0" Style="{ThemeResource BaseTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseHighBrush}"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{x:Bind Uid}" Style="{ThemeResource BodyTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <ListView Name="WikiList" Header="Wikis" Grid.Column="2" HorizontalAlignment="Left" IsItemClickEnabled="True" ItemClick="WikiList_ItemClick">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="model:Wiki">
+                        <StackPanel Orientation="Horizontal" Margin="0 3 0 3">
+                            <Image Height="48" Width="48" Stretch="UniformToFill" Source="{Binding Path=Photo, Converter={StaticResource ImageConverter}}" />
+                            <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="12 0 0 0">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{x:Bind Title}" Margin="0 0 4 0" Style="{ThemeResource BaseTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseHighBrush}"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{x:Bind Uid}" Style="{ThemeResource BodyTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+    </RelativePanel>
+</Page>

@@ -1,0 +1,2 @@
+C:\Users\thoma\source\repos\QC\QuestCompanion\QC.Model\QC.Model.csproj;neutral
+C:\Users\thoma\source\repos\QC\QuestCompanion\QC.UI\QC.UI.csproj;x86

@@ -1,0 +1,110 @@
+﻿<Page x:ConnectionId='1'
+    x:Class="GameExplorer.Uwp.Views.HomePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:GameExplorer.Uwp"
+    xmlns:model="using:GameExplorer.Model"
+    xmlns:converters="using:GameExplorer.Uwp.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    x:Name="ViewModelRoot">
+
+    <Page.Resources>
+        <converters:ImageConverter x:Key="ImageConverter" />
+    </Page.Resources>
+
+    <Grid>
+        <ScrollViewer>
+            <StackPanel>
+                <StackPanel Padding="48">
+                    <StackPanel Orientation="Horizontal" Spacing="20">
+                        <Button x:ConnectionId='21' Content="Add Quest"                                              />
+                        <Button x:ConnectionId='22' Content="Add Wiki"                                            />
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Padding="48">
+                    <!-- Featured -->
+                    <StackPanel>
+                        <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Featured"/>
+                        <GridView x:ConnectionId='17'                                                        IsItemClickEnabled="True">
+                            <GridView.ItemTemplate>
+                                <DataTemplate                                  >
+                                    <Button x:ConnectionId='18' Height="100" Width="100" Command="{Binding ViewModel.GoToCommand, ElementName=ViewModelRoot}" CommandParameter="{Binding}" Background="Transparent">
+                                        <StackPanel>
+                                            <Image x:ConnectionId='19'  Stretch="UniformToFill" VerticalAlignment="Center"                                                                                 />
+                                            <TextBlock x:ConnectionId='20'                                   />
+                                        </StackPanel>
+                                    </Button>
+                                </DataTemplate>
+                            </GridView.ItemTemplate>
+                        </GridView>
+                    </StackPanel>
+                    <!-- New Quests -->
+                    <StackPanel>
+                        <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="New Quests"/>
+                        <GridView x:ConnectionId='13'                                                         IsItemClickEnabled="True">
+                            <GridView.ItemTemplate>
+                                <DataTemplate                                  >
+                                    <Button x:ConnectionId='14' Height="100" Width="100" Command="{Binding ViewModel.GoToCommand, ElementName=ViewModelRoot}" CommandParameter="{Binding}" Background="Transparent">
+                                        <StackPanel>
+                                            <Image x:ConnectionId='15'  Stretch="UniformToFill" VerticalAlignment="Center"                                                                                 />
+                                            <TextBlock x:ConnectionId='16'                                   />
+                                        </StackPanel>
+                                    </Button>
+                                </DataTemplate>
+                            </GridView.ItemTemplate>
+                        </GridView>
+                    </StackPanel>
+                    <!-- New Wikis -->
+                    <StackPanel>
+                        <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="New Wikis"/>
+                        <GridView x:ConnectionId='9'                                                        IsItemClickEnabled="True">
+                            <GridView.ItemTemplate>
+                                <DataTemplate                                  >
+                                    <Button x:ConnectionId='10' Height="100" Width="100" Command="{Binding ViewModel.GoToCommand, ElementName=ViewModelRoot}" CommandParameter="{Binding}" Background="Transparent">
+                                        <StackPanel>
+                                            <Image x:ConnectionId='11'  Stretch="UniformToFill" VerticalAlignment="Center"                                                                                 />
+                                            <TextBlock x:ConnectionId='12'                                   />
+                                        </StackPanel>
+                                    </Button>
+                                </DataTemplate>
+                            </GridView.ItemTemplate>
+                        </GridView>
+                    </StackPanel>
+                    <!-- Featured Users -->
+                    <StackPanel>
+                        <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Featured CurrentUsers"/>
+                        <GridView x:ConnectionId='5'                                                             IsItemClickEnabled="True">
+                            <GridView.ItemTemplate>
+                                <DataTemplate                        >
+                                    <Button x:ConnectionId='6' Height="100" Width="100" Command="{Binding ViewModel.GoToCommand, ElementName=ViewModelRoot}" CommandParameter="{Binding}" Background="Transparent">
+                                        <StackPanel>
+                                            <Image x:ConnectionId='7'  Stretch="UniformToFill" VerticalAlignment="Center"                                                                                 />
+                                            <TextBlock x:ConnectionId='8'                                      />
+                                        </StackPanel>
+                                    </Button>
+                                </DataTemplate>
+                            </GridView.ItemTemplate>
+                        </GridView>
+                    </StackPanel>
+                    <!-- Current User Contributions -->
+                    <StackPanel>
+                        <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Your Contributions"/>
+                        <ListView x:ConnectionId='2'                                                                        IsItemClickEnabled="False">
+                            <ListView.ItemTemplate>
+                                <DataTemplate                       >
+                                    <StackPanel x:ConnectionId='3'>
+                                        <TextBlock x:ConnectionId='4'                                         />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>
+

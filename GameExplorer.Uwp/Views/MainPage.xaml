@@ -1,0 +1,133 @@
+﻿<Page
+    x:Class="GameExplorer.Uwp.Views.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:GameExplorer.Uwp"
+    xmlns:model="using:GameExplorer.Model"
+    xmlns:converters="using:GameExplorer.Uwp.Converters"
+    xmlns:vm="using:GameExplorer.Uwp.ViewModels"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    x:Name="ViewModelRoot"
+    Loaded="Page_Loaded"
+    IsEnabled="{x:Bind ViewModel.Enabled, Mode=OneWay}">
+
+    <Page.Resources>
+        <converters:InvertedVisibillityConverter x:Key="InvertedVisibillityConverter"/>
+        <converters:ImageConverter x:Key="ImageConverter" />
+        <converters:VisibillityConverter x:Key="VisibillityConverter" />
+    </Page.Resources>
+
+    <NavigationView
+            x:Name="NavView"
+            ItemInvoked="NavView_ItemInvoked"
+            Loaded="NavView_Loaded"
+            DataContext="{x:Bind ViewModel}">
+
+        <NavigationView.MenuItems>
+            <NavigationViewItem Icon="Home" Content="Home" Tag="home"/>
+            <NavigationViewItem Icon="Find" Content="Search" Tag="search"/>
+            <NavigationViewItem Icon="Add" Content="Create Game" Tag="createGame" Visibility="{Binding Database.HasUser, Mode=OneWay, ElementName=ViewModelRoot, Converter={StaticResource VisibillityConverter}}"/>
+            <NavigationViewItem Icon="List" Content="My Games" Tag="myGames" Visibility="{Binding Database.HasUser, Mode=OneWay, ElementName=ViewModelRoot, Converter={StaticResource VisibillityConverter}}"/>
+            <NavigationViewItem Icon="Contact" Content="My Friends" Tag="myFriends" Visibility="{Binding Database.HasUser, Mode=OneWay, ElementName=ViewModelRoot, Converter={StaticResource VisibillityConverter}}"/>
+        </NavigationView.MenuItems>
+
+        <NavigationView.HeaderTemplate>
+            <DataTemplate x:DataType="vm:MainPageViewModel">
+                <Grid Background="{ThemeResource GameExplorerTopNavigationBar}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Header titles -->
+                    <StackPanel Grid.Column="0" VerticalAlignment="Center" Orientation="Horizontal" Margin="10,0,0,0">
+                        <Button Name="BackButton" Foreground="White" Visibility="{x:Bind BackButtonVisible, Mode=OneWay}" Command="{x:Bind GoBackCommand}" Style="{StaticResource NavigationBackButtonNormalStyle}"/>
+                        <TextBlock Foreground="White" Style="{StaticResource TitleTextBlockStyle}" Text="{x:Bind HeaderTitle, Mode=OneWay}" Margin="10,0,0,0"/>
+                    </StackPanel>
+
+                    <!-- Quick search autosuggestbox -->
+                    <AutoSuggestBox
+                            Grid.Column="1"
+                            Margin="20,0,20,0"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Right"
+                            QueryIcon="Find"
+                            Width="200"
+                            PlaceholderText="Quick search"
+                            ItemsSource="{x:Bind SearchResults, Mode=OneWay}"
+                            TextChanged="ASB_TextChanged"
+                            QuerySubmitted="ASB_QuerySubmitted">
+                        <AutoSuggestBox.ItemTemplate>
+                            <DataTemplate x:DataType="model:SearchablePost">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Margin="0,0,10,0" Source="{x:Bind Photo, Mode=OneWay, Converter={StaticResource ImageConverter}}" Visibility="{x:Bind Photo, Mode=OneWay, Converter={StaticResource VisibillityConverter}}" Width="40" Height="40" Stretch="UniformToFill"/>
+                                    <StackPanel>
+                                        <TextBlock Text="{x:Bind Title, Mode=OneWay}"/>
+                                        <TextBlock Text="{x:Bind ObjectName, Mode=OneWay}"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </DataTemplate>
+                        </AutoSuggestBox.ItemTemplate>
+                    </AutoSuggestBox>
+
+                    <!-- Header bar commands -->
+                    <CommandBar Grid.Column="2" HorizontalAlignment="Right" Background="Transparent" OverflowButtonVisibility="Auto">
+                        <!-- Current game -->
+                        <AppBarButton Width="150">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Foreground="White" Text="{Binding Database.CurrentGame.Title, ElementName=ViewModelRoot, Mode=OneWay}" VerticalAlignment="Center"/>
+                                <FontIcon Foreground="White" Margin="10 0 0 0" FontSize="16" Glyph="&#xE70D;" />
+                            </StackPanel>
+                            <AppBarButton.Flyout>
+                                <Flyout>
+                                    <StackPanel>
+                                        <MenuFlyoutItem Text="Find game" Command="{x:Bind GoToSearchPageCommand}"/>
+                                        <MenuFlyoutSeparator />
+                                        <ListView ItemsSource="{Binding Database.CurrentUser.Games, ElementName=ViewModelRoot, Mode=OneWay}" IsItemClickEnabled="True">
+                                            <ListView.ItemTemplate>
+                                                <DataTemplate x:DataType="model:Game">
+                                                    <Button Background="Transparent" Command="{Binding ViewModel.SetCurrentGameCommand, ElementName=ViewModelRoot}" CommandParameter="{Binding}">
+                                                        <TextBlock Text="{x:Bind Title, Mode=OneWay}"/>
+                                                    </Button>
+                                                </DataTemplate>
+                                            </ListView.ItemTemplate>
+                                        </ListView>
+                                    </StackPanel>
+                                </Flyout>
+                            </AppBarButton.Flyout>
+                        </AppBarButton>
+                        <!-- Current user -->
+                        <AppBarButton Width="50">
+                            <PersonPicture
+                                    Width="30"
+                                    Margin="0,-15,0,-15"
+                                    ProfilePicture="{Binding Database.CurrentUser.Photo, ElementName=ViewModelRoot, Mode=OneWay, Converter={StaticResource ImageConverter}}"
+                                    Initials="{Binding Database.CurrentUser.Initials, ElementName=ViewModelRoot, Mode=OneWay}" />
+                            <AppBarButton.Flyout>
+                                <MenuFlyout>
+                                    <MenuFlyoutItem Text="My profile" Command="{x:Bind GoToMyProfileCommand}" Visibility="{Binding Database.HasUser, ElementName=ViewModelRoot, Mode=OneWay, Converter={StaticResource VisibillityConverter}}"/>
+                                    <MenuFlyoutItem Text="Account settings" Command="{x:Bind GoToMyAccountSettingsCommand}" Visibility="{Binding Database.HasUser, ElementName=ViewModelRoot, Mode=OneWay, Converter={StaticResource VisibillityConverter}}"/>
+                                    <MenuFlyoutSeparator Visibility="{Binding Database.HasUser,  ElementName=ViewModelRoot, Mode=OneWay, Converter={StaticResource VisibillityConverter}}" />
+                                    <MenuFlyoutItem Text="Sign out" Command="{x:Bind SignOutCommand}" Visibility="{Binding Database.HasUser, ElementName=ViewModelRoot, Mode=OneWay, Converter={StaticResource VisibillityConverter}}"/>
+                                    <MenuFlyoutItem Text="Sign in" Command="{x:Bind NavigateToSignInPageCommand}" Visibility="{Binding Database.HasUser, ElementName=ViewModelRoot, Mode=OneWay, Converter={StaticResource InvertedVisibillityConverter}}"/>
+                                </MenuFlyout>
+                            </AppBarButton.Flyout>
+                        </AppBarButton>
+                    </CommandBar>
+                </Grid>
+            </DataTemplate>
+        </NavigationView.HeaderTemplate>
+
+        <Frame x:Name="ContentFrame">
+            <Frame.ContentTransitions>
+                <TransitionCollection>
+                    <NavigationThemeTransition />
+                </TransitionCollection>
+            </Frame.ContentTransitions>
+        </Frame>
+
+    </NavigationView>
+</Page>

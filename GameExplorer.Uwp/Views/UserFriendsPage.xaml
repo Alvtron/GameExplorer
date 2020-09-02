@@ -1,0 +1,29 @@
+﻿<Page
+    x:Class="GameExplorer.Uwp.Views.UserFriendsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:GameExplorer.Uwp.Views"
+    xmlns:Model="using:GameExplorer.Model"
+    xmlns:Converters="using:GameExplorer.Uwp.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <Converters:ImageConverter x:Key="ImageConverter" />
+    </Page.Resources>
+
+    <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" DataContext="{x:Bind _userData}" Padding="48,48,48,0">
+        <ListView ItemsSource="{Binding Path=Friends}" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="Model:User">
+                    <StackPanel Orientation="Horizontal" Spacing="20">
+                        <Image Height="85" Width="85" Stretch="UniformToFill" VerticalAlignment="Center" Source="{Binding Path=Photo, Converter={StaticResource ImageConverter}}" />
+                        <TextBlock Text="{Binding Path=FullName}" />
+                        <Button Name="RemoveButton" Tag="{Binding}" Content="Remove" Loaded="RemoveButton_Loaded" Click="RemoveButton_Click" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </RelativePanel>
+</Page>

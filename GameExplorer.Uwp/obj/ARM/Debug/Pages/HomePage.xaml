@@ -1,0 +1,105 @@
+﻿<Page
+    x:Class="QC.UI.HomePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:QC.UI"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Featured" Margin="0,0,0,20"/>
+            <GridView x:ConnectionId='3' Name="GridViewFeatured">
+                <GridView.ItemContainerStyle>
+                    <Style TargetType="GridViewItem">
+                        <Style.Setters>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate>
+                                        <Grid Background="LightGreen" Margin="5" Height="150" Width="150">
+                                            <ContentPresenter />
+                                        </Grid>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style.Setters>
+                    </Style>
+                </GridView.ItemContainerStyle>
+                <GridViewItem>Item 1</GridViewItem>
+                <GridViewItem>Item 2</GridViewItem>
+                <GridViewItem>Item 3</GridViewItem>
+                <GridViewItem>Item 4</GridViewItem>
+                <GridViewItem>Item 5</GridViewItem>
+                <GridViewItem>Item 6</GridViewItem>
+                <GridViewItem>Item 7</GridViewItem>
+                <GridViewItem>Item 8</GridViewItem>
+                <GridViewItem>Item 9</GridViewItem>
+            </GridView>
+        </StackPanel>
+        <StackPanel Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="My activity" Margin="0,0,0,20"/>
+            <GridView x:ConnectionId='2' Name="GridViewMyActivity">
+                <GridView.ItemContainerStyle>
+                    <Style TargetType="GridViewItem">
+                        <Style.Setters>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate>
+                                        <Grid Background="LightCoral" Margin="5" Height="150" Width="150">
+                                            <ContentPresenter />
+                                        </Grid>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style.Setters>
+                    </Style>
+                </GridView.ItemContainerStyle>
+                <GridViewItem>Item 1</GridViewItem>
+                <GridViewItem>Item 2</GridViewItem>
+                <GridViewItem>Item 3</GridViewItem>
+                <GridViewItem>Item 4</GridViewItem>
+                <GridViewItem>Item 5</GridViewItem>
+                <GridViewItem>Item 6</GridViewItem>
+                <GridViewItem>Item 7</GridViewItem>
+                <GridViewItem>Item 8</GridViewItem>
+                <GridViewItem>Item 9</GridViewItem>
+            </GridView>
+        </StackPanel>
+        <StackPanel Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="My games" Margin="0,0,0,20"/>
+            <GridView x:ConnectionId='1' Name="GridViewMyGames">
+                <GridView.ItemContainerStyle>
+                    <Style TargetType="GridViewItem">
+                        <Style.Setters>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate>
+                                        <Grid Background="LightBlue" Margin="5" Height="150" Width="150">
+                                            <ContentPresenter />
+                                        </Grid>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style.Setters>
+                    </Style>
+                </GridView.ItemContainerStyle>
+                <GridViewItem>Item 1</GridViewItem>
+                <GridViewItem>Item 2</GridViewItem>
+                <GridViewItem>Item 3</GridViewItem>
+                <GridViewItem>Item 4</GridViewItem>
+                <GridViewItem>Item 5</GridViewItem>
+                <GridViewItem>Item 6</GridViewItem>
+                <GridViewItem>Item 7</GridViewItem>
+                <GridViewItem>Item 8</GridViewItem>
+                <GridViewItem>Item 9</GridViewItem>
+            </GridView>
+        </StackPanel>
+    </Grid>
+</Page>
+

@@ -1,0 +1,113 @@
+﻿<Page
+    x:Class="GameExplorer.Uwp.Views.AddGamePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:GameExplorer.Uwp"
+    xmlns:model="using:GameExplorer.Model"
+    xmlns:converters="using:GameExplorer.Uwp.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    x:Name="ViewModelRoot"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    IsEnabled="{x:Bind ViewModel.Enabled, Mode=OneWay}"
+    DataContext="{x:Bind ViewModel}">
+
+    <Page.Resources>
+        <converters:DateTimeConverter x:Key="DateTimeConverter" />
+        <converters:ImageConverter x:Key="ImageConverter" />
+    </Page.Resources>
+
+    <Grid>
+        <ProgressRing Width="100" Height="100" IsActive="{x:Bind ViewModel.Lock, Mode=OneWay}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <ScrollViewer>
+            <StackPanel Padding="48" Spacing="48">
+                <Pivot>
+                    <!-- General -->
+                    <PivotItem Header="General">
+                        <StackPanel Spacing="8">
+                            <TextBox Header="Title" Text="{x:Bind ViewModel.Game.Title, Mode=TwoWay}"/>
+                            <TextBox Header="Summary" Text="{x:Bind ViewModel.Game.Summary, Mode=TwoWay}"/>
+                            <TextBox Header="Genre" Text="{x:Bind ViewModel.Game.Genre, Mode=TwoWay}"/>
+                            <TextBox Header="Developer" Text="{x:Bind ViewModel.Game.Developer, Mode=TwoWay}"/>
+                            <DatePicker Header="Released" Date="{x:Bind ViewModel.Game.Release, Converter={StaticResource DateTimeConverter}, Mode=TwoWay}"/>
+
+                            <StackPanel>
+                                <Image HorizontalAlignment="Left" Width="360" Height="240" Stretch="UniformToFill" Source="{x:Bind ViewModel.Game.Photo, Mode=OneWay, Converter={StaticResource ImageConverter}}" />
+                                <Button Content="Upload Cover" Command="{x:Bind ViewModel.UploadPhotoCommand}"/>
+                            </StackPanel>
+                            <StackPanel>
+                                <Image HorizontalAlignment="Left" Width="468" Height="120" Stretch="Uniform" Source="{x:Bind ViewModel.Game.Banner, Mode=OneWay, Converter={StaticResource ImageConverter}}" />
+                                <Button Content="Upload Banner" Command="{x:Bind ViewModel.UploadBannerCommand}"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </PivotItem>
+                    <!-- About -->
+                    <PivotItem Header="About">
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                <AppBarButton Tag="about" Icon="Bold" Command="{x:Bind ViewModel.BoldCommand}" CommandParameter="{Binding ElementName=AboutBox}" ToolTipService.ToolTip="Bold" IsCompact="True"/>
+                                <AppBarButton Tag="about" Icon="Italic" Command="{x:Bind ViewModel.ItalicCommand}" CommandParameter="{Binding ElementName=AboutBox}" ToolTipService.ToolTip="Italic" IsCompact="True"/>
+                                <AppBarButton Tag="about" Icon="Underline" Command="{x:Bind ViewModel.UnderlineCommand}" CommandParameter="{Binding ElementName=AboutBox}" ToolTipService.ToolTip="Underline" IsCompact="True"/>
+                            </StackPanel>
+                            <local:RichEditBoxExtended x:Name="AboutBox" Editable="True" Height="300" RtfText="{x:Bind ViewModel.Game.About, Mode=TwoWay}"/>
+                        </StackPanel>
+                    </PivotItem>
+                    <!-- Game: Storyline -->
+                    <PivotItem Header="Storyline">
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                <AppBarButton Tag="about" Icon="Bold" Command="{x:Bind ViewModel.BoldCommand}" CommandParameter="{Binding ElementName=StorylineBox}" ToolTipService.ToolTip="Bold" IsCompact="True"/>
+                                <AppBarButton Tag="about" Icon="Italic" Command="{x:Bind ViewModel.ItalicCommand}" CommandParameter="{Binding ElementName=StorylineBox}" ToolTipService.ToolTip="Italic" IsCompact="True"/>
+                                <AppBarButton Tag="about" Icon="Underline" Command="{x:Bind ViewModel.UnderlineCommand}" CommandParameter="{Binding ElementName=StorylineBox}" ToolTipService.ToolTip="Underline" IsCompact="True"/>
+                            </StackPanel>
+                            <local:RichEditBoxExtended x:Name="StorylineBox" Editable="True" Height="300" RtfText="{x:Bind ViewModel.Game.Storyline, Mode=TwoWay}"/>
+                        </StackPanel>
+                    </PivotItem>
+                    <!-- Screenshots -->
+                    <PivotItem Header="Screenshots">
+                        <StackPanel Spacing="8">
+                            <GridView ItemsSource="{x:Bind ViewModel.Game.Screenshots, Mode=OneWay}">
+                                <GridView.ItemTemplate>
+                                    <DataTemplate x:DataType="model:Image">
+                                        <RelativePanel Height="108" Width="192">
+                                            <Grid>
+                                                <Image Stretch="UniformToFill" Source="{x:Bind ImageInBytes, Mode=OneWay, Converter={StaticResource ImageConverter}}" />
+                                                <HyperlinkButton Command="{Binding DataContext.DeleteScreenshotCommand, ElementName=ViewModelRoot}" CommandParameter="{Binding}" Background="{StaticResource Acryllic60}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,10,0" Padding="2" >
+                                                    <SymbolIcon Symbol="Delete" />
+                                                </HyperlinkButton>
+                                            </Grid>
+                                        </RelativePanel>
+                                    </DataTemplate>
+                                </GridView.ItemTemplate>
+                            </GridView>
+                            <Button Content="Upload" Command="{x:Bind ViewModel.UploadScreenshotsCommand}" />
+                        </StackPanel>
+                    </PivotItem>
+                    <!-- Videos -->
+                    <PivotItem Header="Videos">
+                        <StackPanel Spacing="8">
+                            <GridView ItemsSource="{x:Bind ViewModel.Game.Videos, Mode=OneWay}">
+                                <GridView.ItemTemplate>
+                                    <DataTemplate x:DataType="model:Video">
+                                        <RelativePanel>
+                                            <HyperlinkButton Content="X" RelativePanel.AlignRightWithPanel="True" />
+                                            <WebView Source="{x:Bind YouTubeUri, Mode=OneWay}" Width="192" Height="108" />
+                                        </RelativePanel>
+                                    </DataTemplate>
+                                </GridView.ItemTemplate>
+                            </GridView>
+                            <Button Content="Add video" Command="{x:Bind ViewModel.UploadVideoCommand}"/>
+                        </StackPanel>
+                    </PivotItem>
+                </Pivot>
+                <StackPanel Orientation="Horizontal" Spacing="20" Visibility="{x:Bind ViewModel.Changed, Mode=OneWay}">
+                    <Button Background="{StaticResource SaveButtonColor}" Foreground="White" Content="Save Changes" Command="{x:Bind ViewModel.UploadAndNavigateCommand}"/>
+                    <HyperlinkButton Command="{x:Bind ViewModel.ResetCommand}">
+                        <TextBlock Text="Reset" />
+                    </HyperlinkButton>
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

@@ -1,0 +1,1 @@
+C:\Users\thoma\source\repos\QC\QuestCompanion\QC.UI\QC.UI.csproj;arm

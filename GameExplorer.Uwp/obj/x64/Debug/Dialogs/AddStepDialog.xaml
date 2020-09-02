@@ -1,0 +1,34 @@
+﻿<ContentDialog x:ConnectionId='1'
+    x:Class="GameExplorer.Uwp.Dialogs.AddStepDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:GameExplorer.Uwp"
+    xmlns:converters="using:GameExplorer.Uwp.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Title="New step"
+    PrimaryButtonText="Discard"
+    SecondaryButtonText="Add">
+
+    <ContentDialog.Resources>
+        <converters:VisibillityConverter x:Key="VisibillityConverter" />
+        <converters:ImageConverter x:Key="ImageConverter" />
+    </ContentDialog.Resources>
+
+    <RelativePanel x:ConnectionId='2'                                >
+        <StackPanel x:ConnectionId='3' Name="Editor" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <AppBarButton x:ConnectionId='6' Tag="about" Icon="Bold"                          ToolTipService.ToolTip="Bold" IsCompact="True"/>
+                <AppBarButton x:ConnectionId='7' Tag="about" Icon="Italic"                            ToolTipService.ToolTip="Italic" IsCompact="True"/>
+                <AppBarButton x:ConnectionId='8' Tag="about" Icon="Underline"                               ToolTipService.ToolTip="Underline" IsCompact="True"/>
+            </StackPanel>
+            <local:RichEditBoxExtended x:ConnectionId='5' x:Name="AboutBox" Editable="True" Height="150" RtfText="{Binding Path=About, Mode=TwoWay}"/>
+        </StackPanel>
+        <StackPanel RelativePanel.Below="Editor" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
+            <Image Stretch="UniformToFill" Margin="0 20 0 0" Source="{Binding Screenshot, Converter={StaticResource ImageConverter}, Mode=OneWay}" Width="192" Height="108" HorizontalAlignment="Left" Visibility="{Binding Screenshot, Converter={StaticResource VisibillityConverter}, Mode=OneWay}" />
+            <HyperlinkButton x:ConnectionId='4' Margin="0 20 0 0" Content="Attach screenshot"                                />
+        </StackPanel>
+    </RelativePanel>
+</ContentDialog>
+

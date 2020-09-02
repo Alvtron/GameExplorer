@@ -1,0 +1,20 @@
+﻿<ContentDialog
+    x:Class="GameExplorer.Uwp.Dialogs.CreateQuestLineDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:GameExplorer.Uwp"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Title="Create Questline"
+    PrimaryButtonText="Cancel"
+    SecondaryButtonText="Create"
+    PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
+    SecondaryButtonClick="ContentDialog_SecondaryButtonClick"
+    DataContext="{x:Bind Questline}">
+
+    <StackPanel>
+        <TextBox Header="Title" Name="TitleBox" Text="{Binding Title, Mode=TwoWay}" TextChanged="TextBox_TextChanged" />
+        <AutoSuggestBox Name="GameASB" Header="Game" ItemsSource="{x:Bind _games}" QuerySubmitted="GameASB_QuerySubmitted" TextChanged="GameASB_TextChanged" Loaded="GameASB_OnLoaded" />
+    </StackPanel>
+</ContentDialog>
